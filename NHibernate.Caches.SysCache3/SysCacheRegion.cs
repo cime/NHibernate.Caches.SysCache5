@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Caching;
+using System.Threading;
+using System.Threading.Tasks;
 using NHibernate.Cache;
 using Environment = NHibernate.Cfg.Environment;
 
@@ -102,7 +104,7 @@ namespace NHibernate.Caches.SysCache3
 			Clear();
 		}
 
-		public object Get(object key)
+	    public object Get(object key)
 		{
 			if (key == null || _isRootItemCached == false)
 			{
@@ -412,5 +414,47 @@ namespace NHibernate.Caches.SysCache3
 
 			return expiration;
 		}
-	}
+
+        #region Async
+        
+	    public Task<object> GetAsync(object key, CancellationToken cancellationToken)
+	    {
+	        return Task.FromResult(Get(key));
+	    }
+
+	    public Task PutAsync(object key, object value, CancellationToken cancellationToken)
+	    {
+            Put(key, value);
+
+	        return Task.CompletedTask;
+        }
+
+	    public Task RemoveAsync(object key, CancellationToken cancellationToken)
+	    {
+            Remove(key);
+
+	        return Task.CompletedTask;
+        }
+
+	    public Task ClearAsync(CancellationToken cancellationToken)
+	    {
+	        Clear();
+
+	        return Task.CompletedTask;
+	    }
+
+	    public Task LockAsync(object key, CancellationToken cancellationToken)
+	    {
+            //nothing to do here
+	        return Task.CompletedTask;
+        }
+
+        public Task UnlockAsync(object key, CancellationToken cancellationToken)
+	    {
+	        //nothing to do since we arent locking
+	        return Task.CompletedTask;
+	    }
+        
+        #endregion
+    }
 }
