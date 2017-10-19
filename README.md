@@ -1,4 +1,4 @@
-﻿NHibernate.Caches.SysCache3
+﻿NHibernate.Caches.SysCache5
 ===========================
 NHibernate 2nd level cache provider that uses System.Runtime.Caching.MemoryCache.
 
@@ -13,10 +13,10 @@ How to use it (see also NHibernate.Caches.SysCache2 from [NHibernate Contrib](ht
 <configuration>
   
   <configSections>
-    <section name="syscache3" type="NHibernate.Caches.SysCache3.SysCacheSection, NHibernate.Caches.SysCache3" />
+    <section name="syscache5" type="NHibernate.Caches.SysCache5.SysCacheSection, NHibernate.Caches.SysCache5" />
   </configSections>
   
-  <syscache3>
+  <syscache5>
     <cacheRegion name="DefaultCache" relativeExpiration="3600">
       <dependencies>
         <commands>
@@ -28,7 +28,7 @@ How to use it (see also NHibernate.Caches.SysCache2 from [NHibernate Contrib](ht
         </files>
       </dependencies>
     </cacheRegion>
-  </syscache3>
+  </syscache5>
   
 </configuration>
 ```
