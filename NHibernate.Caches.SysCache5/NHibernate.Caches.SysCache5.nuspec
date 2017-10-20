@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>NHibernate.Caches.SysCache5</id>
-    <version>1.5.0</version>
+    <version>1.5.2</version>
     <authors>cime,romis2012</authors>
     <owners>cime</owners>
     <projectUrl>https://github.com/cime/NHibernate.Caches.SysCache5</projectUrl>

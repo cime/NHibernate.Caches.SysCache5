@@ -1,0 +1,1 @@
+nuget pack NHibernate.Caches.SysCache5.csproj -Symbols
